@@ -1,10 +1,8 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
+import '@babel/polyfill';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import LOGGER from 'morgan';
-
 import Connection from './db/connection';
 import { SERVER_SETTINGS, DB_SETTINGS } from './constants';
 import {
@@ -15,10 +13,12 @@ import {
 let MONGO_DB_URL;
 let API_PORT;
 
+// Enable production mode 
 if (process.env.NODE_ENV === 'production') {
   MONGO_DB_URL = DB_SETTINGS.MONGO_ATLAS.URI;
   API_PORT = process.env.PORT || 3000;
 } else {
+  // Mongo atlas URI
   MONGO_DB_URL = `mongodb://${DB_SETTINGS.MONGO.IP}:${DB_SETTINGS.MONGO.PORT}/${DB_SETTINGS.MONGO.NAME}`;
   API_PORT = SERVER_SETTINGS.API.PORT;
 }
