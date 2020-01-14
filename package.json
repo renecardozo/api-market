@@ -4,6 +4,7 @@
   "description": "api resources for any clients",
   "main": "server.js",
   "scripts": {
+    "start": "NODE_ENV=production node ./dist/server.js",
     "dev": "nodemon --exec babel-node ./src/server.js",
     "test": "./node_modules/.bin/mocha --require @babel/register 'test/**/**spec.js'",
     "build": "babel src --out-dir ./dist --source-maps",
